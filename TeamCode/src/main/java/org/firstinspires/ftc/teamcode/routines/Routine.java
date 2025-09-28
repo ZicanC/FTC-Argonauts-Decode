@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode.routines;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,6 +14,17 @@ public class Routine extends LinearOpMode {
 	@Override
 	public void runOpMode() {
 		// Run initialization code
+
+		// Gets detected motors
+		List<DcMotor> allMotors = hardwareMap.getAll(DcMotor.class);
+		String motorsString = "";
+		for(int i = 0; i < allMotors.size(); i++)
+            motorsString += allMotors.get(i).getDeviceName() + " ";
+
+		telemetry.addLine("DETECTED HARDWARE");
+		telemetry.addData("Motors", motorsString);
+		telemetry.addLine("--------------------");
+
 		onInit();
 
 		// Wait for start in case of initialization code ending early
