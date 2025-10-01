@@ -16,16 +16,8 @@ public class Routine extends LinearOpMode {
 		// Run initialization code
 
 		// Gets detected motors
-		List<DcMotor> allMotors = hardwareMap.getAll(DcMotor.class);
-		String motorsString = "";
-		for(int i = 0; i < allMotors.size(); i++)
-            motorsString += allMotors.get(i).getDeviceName() + " ";
 
-		telemetry.addLine("DETECTED HARDWARE");
-		telemetry.addData("Motors", motorsString);
-		telemetry.addLine("--------------------");
-
-		onInit();
+		//onInit();
 
 		// Wait for start in case of initialization code ending early
 		waitForStart();
@@ -46,7 +38,17 @@ public class Routine extends LinearOpMode {
 		if (!this.exited) onExit();
 	}
 
-	public void onInit() {}
+	public void onInit() {
+		List<DcMotor> allMotors = hardwareMap.getAll(DcMotor.class);
+		String motorsString = "";
+		for(int i = 0; i < allMotors.size(); i++)
+			motorsString += allMotors.get(i).getDeviceName() + " ";
+
+		telemetry.addLine("DETECTED HARDWARE");
+		telemetry.addData("Motors", motorsString);
+		telemetry.addLine("--------------------");
+		telemetry.update();
+	}
 	public void onStart() {}
 	public void onExit() {
 		this.exited = true;
