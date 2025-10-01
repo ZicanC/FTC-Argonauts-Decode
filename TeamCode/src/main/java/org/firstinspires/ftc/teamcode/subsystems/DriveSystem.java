@@ -33,7 +33,7 @@ public class DriveSystem extends Subsystem
     }
 
     public void driveOnTick(double x, double y, double rx) {
-        x = -x;
+        //x = -x;
 
         getDrive_motor_fl().setPower(-(y + x + rx));
         getDrive_motor_fr().setPower(-(y - x + rx));
@@ -44,7 +44,7 @@ public class DriveSystem extends Subsystem
 
 
     public void driveOnTickVector(double x, double y, double rx){
-        x = -x;
+        //x = -x;
         rx = -rx;
         double theta = Math.atan2(y, x);
         double power = Math.hypot(x, y);
@@ -65,9 +65,9 @@ public class DriveSystem extends Subsystem
             rightRear  /= power + Math.abs(rx);
         }
 
-        getDrive_motor_fl().setPower(leftFront);
-        getDrive_motor_fr().setPower(-rightFront);
-        getDrive_motor_bl().setPower(leftRear);
+        getDrive_motor_fl().setPower(-leftFront);
+        getDrive_motor_fr().setPower(rightFront);
+        getDrive_motor_bl().setPower(-leftRear);
         getDrive_motor_br().setPower(-rightRear);
     }
 
