@@ -5,12 +5,15 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.routines.Routine;
 import org.firstinspires.ftc.teamcode.subsystems.ConveyorSystem;
 import org.firstinspires.ftc.teamcode.subsystems.DriveSystem;
+import org.firstinspires.ftc.teamcode.subsystems.LaunchSystem;
 import org.firstinspires.ftc.teamcode.subsystems.servoTest;
 
 @TeleOp(name = "Driver")
 public class DriverRoutine extends Routine {
 	public DriveSystem driveSystem;
 	public ConveyorSystem conveyorSystem;
+
+	public LaunchSystem launchSystem;
 
 
 	@Override
@@ -26,6 +29,7 @@ public class DriverRoutine extends Routine {
 	public void onStart() {
 		conveyorSystem = new ConveyorSystem(this);
 		driveSystem = new DriveSystem(this);
+		launchSystem = new LaunchSystem(this);
 		super.onStart();
 		try
 		{
@@ -39,6 +43,7 @@ public class DriverRoutine extends Routine {
 			driveSystem.driveOnTickVector(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
 			conveyorSystem.toggleOnMotor(gamepad1.left_bumper);
 			conveyorSystem.toggleOffMotor(gamepad1.right_bumper);
+			launchSystem.moveOnTick(gamepad1.left_bumper, gamepad1.right_bumper);
 
 			telemetry.addData("left_stick_x", gamepad1.left_stick_x);
 			telemetry.addData("left_stick_y", gamepad1.left_stick_x);
