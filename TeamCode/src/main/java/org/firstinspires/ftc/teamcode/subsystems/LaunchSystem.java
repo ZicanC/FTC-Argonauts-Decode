@@ -31,10 +31,6 @@ public class LaunchSystem extends Subsystem{
 
 
 
-
-
-
-
     public LaunchSystem(Routine routine) {
         super(routine);
         launch_motor = routine.hardwareMap.get(DcMotor.class, "launch_motor");
