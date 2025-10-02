@@ -2,16 +2,13 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.routines.Routine;
 
-public class servoTest extends Subsystem{
+public class ServoTest extends Subsystem{
 
     private CRServo servo1;
     private CRServo servo2;
-    private boolean isOn;
-    private boolean wasPressed;
     public CRServo getServo1()
     {
         return servo1;
@@ -21,38 +18,19 @@ public class servoTest extends Subsystem{
     {
         return servo2;
     }
-    public void setWasPressed(boolean value)
-    {
-        this.wasPressed = value;
-    }
-    public boolean getIsOn()
-    {
-        return isOn;
-    }
-    public void setIsOn(boolean value)
-    {
-        this.isOn = value;
-    }
 
     public void toggleServos(Boolean clicked)
     {
-
-        if (clicked && !getIsOn()) {
-            setIsOn(!getIsOn());
+        if(clicked) {
+            getServo1().setPower(1);
+            getServo2().setPower(1);
         }
-
-        setWasPressed(clicked);
-
-        if (getIsOn()) {
-            getServo1().setPower(0.1);
-            getServo2().setPower(0.1);
-        } else {
-            getServo1().setPower(0.0);
-            getServo1().setPower(0.0);
+        else {
+            getServo1().setPower(0);
+            getServo2().setPower(0);
         }
     }
-
-    public servoTest(Routine routine)
+    public ServoTest(Routine routine)
     {
         super(routine);
         servo1 = routine.hardwareMap.get(CRServo.class, "servo_1");

@@ -12,19 +12,17 @@ public class ConveyorSystem extends Subsystem {
         return conveyorMotor;
     }
 
-    public void toggleOnMotor(boolean clicked)
+    public void toggleMotor(boolean clicked)
     {
-        if (clicked) {
-            getConveyorMotor().setPower(1);
+        double pow = 1;
+        if(clicked){
+            getConveyorMotor().setPower(pow);
         }
-    }
-
-    public void toggleOffMotor(boolean clicked)
-    {
-        if (clicked) {
+        else{
             getConveyorMotor().setPower(0);
         }
     }
+
 
 
     public ConveyorSystem(Routine routine)
