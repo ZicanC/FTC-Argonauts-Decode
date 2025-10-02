@@ -30,8 +30,6 @@ public class ConveyorSystem extends Subsystem {
     public ConveyorSystem(Routine routine)
     {
         super(routine);
-        this.isOn = false;
-        this.wasPressed = false;
         conveyorMotor = routine.hardwareMap.get(DcMotor.class, "conveyor_motor");
         conveyorMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
