@@ -12,8 +12,6 @@ public class DriverRoutine extends Routine {
 	public DriveSystem driveSystem;
 	public ConveyorSystem conveyorSystem;
 
-	public servoTest isservo;
-
 
 	@Override
 	public void onInit() {
@@ -28,7 +26,6 @@ public class DriverRoutine extends Routine {
 	public void onStart() {
 		conveyorSystem = new ConveyorSystem(this);
 		driveSystem = new DriveSystem(this);
-		isservo = new servoTest(this);
 		super.onStart();
 		try
 		{
@@ -40,8 +37,8 @@ public class DriverRoutine extends Routine {
 		while(opModeIsActive()){
 
 			driveSystem.driveOnTickVector(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
-			conveyorSystem.toggleMotor(gamepad1.y);
-			isservo.toggleServos(gamepad1.a);
+			conveyorSystem.toggleOnMotor(gamepad1.left_bumper);
+			conveyorSystem.toggleOffMotor(gamepad1.right_bumper);
 
 			telemetry.addData("left_stick_x", gamepad1.left_stick_x);
 			telemetry.addData("left_stick_y", gamepad1.left_stick_x);

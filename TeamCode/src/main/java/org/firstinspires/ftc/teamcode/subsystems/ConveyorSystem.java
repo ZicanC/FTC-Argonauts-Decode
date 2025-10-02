@@ -7,53 +7,26 @@ import org.firstinspires.ftc.teamcode.routines.Routine;
 public class ConveyorSystem extends Subsystem {
 
     private DcMotor conveyorMotor;
-    private boolean isOn;
-    private boolean wasPressed;
 
     public DcMotor getConveyorMotor() {
         return conveyorMotor;
     }
 
-    public boolean getWasPressed()
+    public void toggleOnMotor(boolean clicked)
     {
-        return wasPressed;
-    }
-    public void setWasPressed(boolean value)
-    {
-        this.wasPressed = value;
-    }
-    public boolean getIsOn()
-    {
-        return isOn;
-    }
-    public void setIsOn(boolean value)
-    {
-        this.isOn = value;
-    }
-    public void toggleMotor(boolean clicked)
-    {
-        if (clicked && !getIsOn()) {
-            setIsOn(!getIsOn());
+        if (clicked) {
+            getConveyorMotor().setPower(1);
         }
+    }
 
-        setWasPressed(clicked);
-
-        if (getIsOn()) {
-            getConveyorMotor().setPower(0.9);
-        } else {
-            getConveyorMotor().setPower(0.0);
-        }
-        /*
-        if(clicked && !getIsOn())
-        {
-            getConveyorMotor().setPower(0.9);
-            this.setIsOn(true);
-        } else if (clicked && getIsOn()) {
+    public void toggleOffMotor(boolean clicked)
+    {
+        if (clicked) {
             getConveyorMotor().setPower(0);
-            this.setIsOn(false);
         }
-        */
     }
+
+
     public ConveyorSystem(Routine routine)
     {
         super(routine);
