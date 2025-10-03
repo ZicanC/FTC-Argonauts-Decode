@@ -7,6 +7,8 @@ import org.firstinspires.ftc.teamcode.routines.Routine;
 public class ConveyorSystem extends Subsystem {
 
     private DcMotor conveyorMotor;
+    private boolean isHold = false;
+    private boolean isOn = false;
 
     public DcMotor getConveyorMotor() {
         return conveyorMotor;
@@ -14,13 +16,24 @@ public class ConveyorSystem extends Subsystem {
 
     public void toggleMotor(boolean clicked)
     {
-        double pow = 1;
-        if(clicked){
-            getConveyorMotor().setPower(pow);
+        if(!isHold && clicked)
+        {
+            isHold = true;
         }
-        else{
-            getConveyorMotor().setPower(0);
+        else if(isHold && !clicked)
+        {
+            isHold = false;
+            if(isOn)
+            {
+                getConveyorMotor().setPower(0);
+                isOn = false;
+            } else
+            {
+                getConveyorMotor().setPower(1);
+                isOn = true;
+            }
         }
+
     }
 
 
